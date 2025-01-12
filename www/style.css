@@ -1,0 +1,139 @@
+/* Style the navigation bar */
+.navbar {
+    width: 100%;
+    background-color: #555;
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensures navbar stays on top */
+}
+
+/* Add padding to body to prevent content from hiding under fixed navbar */
+body {
+    padding-top: 50px; /* Adjust this value based on your navbar height */
+    padding-bottom: 30px; /* For footer spacing */
+}
+
+/* Rest of your existing styles remain the same */
+.navbar a {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.navbar a:hover {
+    background-color: #000;
+}
+
+.navbar .active {
+    background-color: #04AA6D;
+}
+
+/* Footer styles remain unchanged */
+.footer {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+}
+
+ /* Style the navigation bar */
+ .navbar {
+    width: 100%;
+    background-color: #555;
+    position: fixed;
+    overflow: auto;
+    top: 0;
+  }
+  
+  /* Navbar links */
+  .navbar a {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    
+  }
+  
+  /* Navbar links on mouse-over */
+  .navbar a:hover {
+    background-color: #000;
+  }
+  
+  /* Current/active navbar link */
+  .navbar .active {
+    background-color: #04AA6D;
+  }
+
+ /* Style the footer */
+.footer {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+    position: fixed;
+    bottom: 0;
+    text-align: center; /* Center the content */
+}
+
+/* Footer links container */
+.footer-links {
+    display: inline-block; /* Helps with centering */
+    margin: 0 auto;
+}
+
+/* Footer links */
+.footer a {
+    display: inline-block; /* Changed from float for centering */
+    text-align: center;
+    padding: 6px; /* Reduced from 12px */
+    color: white;
+    text-decoration: none;
+    font-size: 8.5px; /* Reduced from 17px (50% smaller) */
+}
+
+/* Footer links on mouse-over */
+.footer a:hover {
+    background-color: #000;
+}
+
+/* Current/active footer link */
+.footer .active {
+    background-color: #04AA6D;
+}
+
+/* Rest of your styles... */
+
+/* Add styles for content sections */
+.content-section {
+    display: none; /* Hide all sections by default */
+    padding: 20px;
+    margin-top: 60px; /* Space for fixed navbar */
+    margin-bottom: 40px; /* Space for fixed footer */
+}
+
+.content-section.active {
+    display: block; /* Show active section */
+}
+
+@media screen and (max-width: 500px) {
+    .navbar a {
+        float: none;
+        display: block;
+    }
+    .footer a {
+        float: none;
+        display: block;
+    }
+    body {
+        padding-top: 50px; /* Maintain top padding for mobile */
+        padding-bottom: 50px;
+    }
+}
