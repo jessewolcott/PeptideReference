@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Peptide Reference</title>
+    <!-- Include Tabulator CSS and JavaScript from CDN [[2]] -->
+    <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+</head>
+<body>
+    <!-- Create a div element that will contain the table -->
+    <div id="example-table"></div>
+
+    <script>
+        // Sample data for the table
+        var nestedData = [
+  {
+    "discordant": "None known",
+    "id": "100",
+    "mechanism": "",
+    "peptidename": "5-amino-1MQ",
+    "tags": "Body Recomposition, Cholesterol Control, Immune system, Muscles, Weight Loss",
+    "halfLife": "5-6 Hours",
+    "synergistic": "NAD+",
+    "administration": [
+      {
+        "source": "\u003ca href=\"TMCCatalog.pdf\" target=\"_blank\"\u003eTailorMade Compounding\u003c/a\u003e",
+        "fasting": "No",
+        "dosage": "150mg",
+        "frequency": "QD",
+        "route": "Oral",
+        "protocol": "QD CC PO, 3 weeks on, 2 weeks off"
+      }
+    ],
+    "sideEffects": "Insomnia, Lethargy"
+  },
+  {
+    "discordant": "",
+    "id": "200",
+    "mechanism": "",
+    "peptidename": "AOD-9604",
+    "tags": "Cartilage Growth and Repair, Healing, Weight Loss",
+    "halfLife": "20-30 Minutes",
+    "synergistic": "GLP-1, GIP, GCG, Amylin",
+    "administration": [
+      {
+        "fasting": "No",
+        "dosage": "500mcg",
+        "timing": "AM",
+        "frequency": "QD",
+        "route": "Sublingual",
+        "protocol": "QD SL AM, 20 days on, 10 days off, up to 6 months"
+      },
+      {
+        "source": "\u003ca href=\"TMCCatalog.pdf\" target=\"_blank\"\u003eTailorMade Compounding\u003c/a\u003e",
+        "fasting": "Yes",
+        "dosage": "300mcg",
+        "timing": "AM",
+        "frequency": "QD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD SQ AM fasted, 20 days on, 10 days off, up to 6 months"
+      },
+      {
+        "source": "Dr. Seeds",
+        "fasting": "No",
+        "dosage": "250mcg",
+        "frequency": "BD",
+        "route": "Subcutaneous Injection",
+        "protocol": "BD SQ AM, early AM and before bed, 20 days on, 10 days off, up to 6 months"
+      }
+    ],
+    "sideEffects": "Diarrhea, Flatulence, Increased Appetite, Headache, Nausea"
+  },
+  {
+    "discordant": "",
+    "id": "300",
+    "mechanism": "",
+    "peptidename": "ARA 290",
+    "tags": "Cognition, Healing, Immune system",
+    "halfLife": "Unknown",
+    "synergistic": "",
+    "administration": [
+      {
+        "source": "\u003ca href=\"https://muscleandbrawn.com/peptides/ara-290-peptide-guide/\" target=\"_blank\"\u003eMuscle and Brawn\u003c/a\u003e",
+        "fasting": "No",
+        "dosage": "1-5mg",
+        "frequency": "TIW",
+        "route": "Subcutaneous Injection",
+        "protocol": "TIW SQ, 4-5 Weeks"
+      }
+    ],
+    "sideEffects": "Hypertension, Headache, Liver enzyme elevation, Nausea, PIP"
+  },
+  {
+    "discordant": "",
+    "id": "400",
+    "mechanism": "",
+    "peptidename": "Argireline",
+    "tags": "Skin",
+    "halfLife": "Unknown",
+    "synergistic": "SNAP8",
+    "sideEffects": "Dry, Flaky skin, stinging"
+  },
+  {
+    "discordant": "",
+    "id": "500",
+    "mechanism": "",
+    "peptidename": "BPC-157",
+    "tags": "Bone and connective tissue health, healing",
+    "halfLife": "4 Hours",
+    "synergistic": "GHK-Cu, TB-500, TB4",
+    "administration": [
+      {
+        "source": "\u003ca href=\"https://world-of-peptides.com/bpc-157-peptide-protocol/\" target=\"_blank\"\u003eWorld of Peptides\u003c/a\u003e",
+        "fasting": "No",
+        "dosage": "150mcg",
+        "frequency": "BD",
+        "route": "Intramuscular Injection",
+        "protocol": "BD IM at location of injury, 8 weeks on, 2 weeks off"
+      },
+      {
+        "source": "\u003ca href=\"TMCCatalog.pdf\" target=\"_blank\"\u003eTailorMade Compounding\u003c/a\u003e",
+        "fasting": "No",
+        "dosage": "500mcg",
+        "frequency": "QD",
+        "route": "Oral",
+        "protocol": "QD PO for 30 days"
+      },
+      {
+        "source": "\u003ca href=\"TMCCatalog.pdf\" target=\"_blank\"\u003eTailorMade Compounding\u003c/a\u003e",
+        "fasting": "No",
+        "dosage": "300mcg",
+        "frequency": "QD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD SQ, titrate up from 100mcg, 30"
+      }
+    ],
+    "sideEffects": "Cardiovascular Changes, Mood Effects, And Physical Discomfort"
+  },
+  {
+    "discordant": "Semorelon, Tesamorelin",
+    "id": "600",
+    "mechanism": "",
+    "peptidename": "CJC-1295 DAC",
+    "tags": "Bone Density, Muscle Mass and Strength, Overall Energy, Injury Repair, Sleep, Cognition",
+    "halfLife": "6-8 Days",
+    "synergistic": "Ibutamoren (MK-677), Ipamorelin",
+    "administration": [
+      {
+        "source": "Dr. Seeds",
+        "fasting": "2-3 hours after eating",
+        "dosage": "200mcg",
+        "frequency": "BW",
+        "route": "Subcutaneous Injection",
+        "protocol": "BW SQ, 30 days"
+      }
+    ],
+    "sideEffects": "Fluid Retention, Sensory Changes, And Energy Fluctuations"
+  },
+  {
+    "discordant": "",
+    "id": "700",
+    "mechanism": "",
+    "peptidename": "Dihexa",
+    "tags": "Cognition, Longevity",
+    "halfLife": "Unknown",
+    "synergistic": "Cerebrolysin, Selank, Semax",
+    "administration": [
+      {
+        "source": "\u003ca href=\"TMCCatalog.pdf\" target=\"_blank\"\u003eTailorMade Compounding\u003c/a\u003e",
+        "fasting": "No",
+        "dosage": "1-2mg",
+        "frequency": "QD",
+        "route": "Oral",
+        "protocol": "QD PO"
+      },
+      {
+        "source": "Dr. Seeds",
+        "fasting": "No",
+        "dosage": "20mg/ml",
+        "frequency": "BD",
+        "route": "Topical Application",
+        "protocol": "BD top"
+      },
+      {
+        "source": "Jay Campbell",
+        "fasting": "No",
+        "dosage": "8-45mg",
+        "frequency": "QD",
+        "route": "Topical Application",
+        "protocol": "QD top"
+      },
+      {
+        "source": "\u003ca href=\"TMCCatalog.pdf\" target=\"_blank\"\u003eTailorMade Compounding\u003c/a\u003e",
+        "fasting": "No",
+        "dosage": "10-20mg",
+        "frequency": "QD",
+        "route": "Topical Application",
+        "protocol": "QD top to inner forearms, rub in until absorbed"
+      }
+    ],
+    "sideEffects": "Mood Disturbances, Digestive Issues, And Sleep Problems"
+  },
+  {
+    "discordant": "",
+    "id": "800",
+    "mechanism": "",
+    "peptidename": "DSIP",
+    "tags": "Chronic Pain, Cognition, Depression, Lowers Blood Pressure and risk of CHD",
+    "halfLife": "Minutes - Hours (Unknown)",
+    "synergistic": "",
+    "administration": [
+      {
+        "source": "Dr. Seeds",
+        "fasting": "No",
+        "dosage": "100mcg",
+        "timing": "PM",
+        "frequency": "Varies",
+        "route": "Subcutaneous Injection",
+        "protocol": "SQ 3 hours before bed, PO, TIW, QWK"
+      },
+      {
+        "source": "World of Peptides",
+        "fasting": "No",
+        "dosage": "250-450mcg",
+        "timing": "PM",
+        "frequency": "Varies",
+        "route": "Subcutaneous Injection",
+        "protocol": "SQ 2 hours before bed, PO, TIW, SWK"
+      }
+    ],
+    "sideEffects": "Cardiovascular Changes, Dizziness, And Gastrointestinal Distress"
+  },
+  {
+    "discordant": "",
+    "id": "900",
+    "mechanism": "",
+    "peptidename": "Epitalon (NOT Epithalamin)",
+    "tags": "Anti-Aging, Cognition, Vision, Immunity, Sleep Quality",
+    "halfLife": "Short (Unknown)",
+    "synergistic": "Thymalin",
+    "administration": [
+      {
+        "source": "Dr. Seeds",
+        "fasting": "No",
+        "dosage": "100mcg",
+        "frequency": "QD",
+        "route": "Intramuscular Injection",
+        "protocol": "QD IM for 10 days, twice a year"
+      },
+      {
+        "source": "The Ukranian Protocol",
+        "fasting": "No ",
+        "dosage": "100mcg",
+        "frequency": "Q3D",
+        "route": "Intramuscular Injection",
+        "protocol": "Q3D IM until 50mcg administered"
+      },
+      {
+        "source": "The Ukranian Protocol",
+        "fasting": "No ",
+        "dosage": "100mcg",
+        "frequency": "Q3D",
+        "route": "Intramuscular Injection",
+        "protocol": "Q3D IM for 3 weeks, once a year"
+      },
+      {
+        "source": "\u003ca href=\"TMCCatalog.pdf\" target=\"_blank\"\u003eTailorMade Compounding\u003c/a\u003e",
+        "fasting": "No",
+        "dosage": "10mg",
+        "frequency": "Q3D",
+        "route": "Subcutaneous Injection",
+        "protocol": "Q3D SQ for 15 days"
+      }
+    ],
+    "sideEffects": "Digestive Issues, Sleep Problems, And Physical Discomfort"
+  },
+  {
+    "discordant": "AOD-9608",
+    "id": "1000",
+    "mechanism": "",
+    "peptidename": "Frag 176-191",
+    "tags": "Lower Blood Sugar, Lipolysis, Sleep Quality",
+    "halfLife": "Unknown",
+    "synergistic": "MOTS-C",
+    "administration": [
+      {
+        "source": "World of Peptides",
+        "fasting": "Yes",
+        "dosage": "500mcg",
+        "timing": "AM",
+        "frequency": "QD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD SQ AM fasted, wait 1 hour before eating"
+      }
+    ],
+    "sideEffects": "Lethargy"
+  },
+  {
+    "discordant": "",
+    "id": "1100",
+    "mechanism": "",
+    "peptidename": "GHK-Cu",
+    "tags": "Skin, Nerves, Inflammation, Cognition, and Regeneration Benefits",
+    "halfLife": "Unknown",
+    "synergistic": "BPC-157, Snap-12",
+    "administration": [
+      {
+        "source": "Dr. Seeds",
+        "fasting": "No",
+        "dosage": "1-2mg",
+        "frequency": "QD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD SC for 6 weeks, doses can be split. 4 weeks off, cycle 3-4 times a year. Take zinc supplement, monitor copper levels in blood"
+      },
+      {
+        "source": "\u003ca href=\"TMCCatalog.pdf\" target=\"_blank\"\u003eTailorMade Compounding\u003c/a\u003e",
+        "fasting": "No",
+        "dosage": "1-2 pumps @ 5% concentration",
+        "frequency": "QD",
+        "route": "Topical Application",
+        "protocol": "QD Top daily for 30 dailies"
+      }
+    ],
+    "sideEffects": "Allergic Reactions, Cardiovascular Changes, And Physical Discomfort"
+  },
+  {
+    "discordant": "",
+    "id": "1200",
+    "mechanism": "",
+    "peptidename": "Humanin",
+    "tags": "Mitochondrial Protection And Disease Prevention",
+    "halfLife": "Unknown",
+    "synergistic": "MOTS-C, SS-35",
+    "administration": [
+      {
+        "frequency": "QD",
+        "dosage": "1mg",
+        "fasting": "No",
+        "protocol": "QD SQ for 30 days",
+        "route": "Subcutaneous Injection"
+      }
+    ],
+    "sideEffects": ""
+  },
+  {
+    "discordant": "",
+    "id": "1300",
+    "mechanism": "",
+    "peptidename": "Ibutamoren (MK-677)",
+    "tags": "Muscle Growth, Energy, Cognition, Endurance And Joint Health",
+    "halfLife": "Unknown",
+    "synergistic": "CJC 1295, Ipamorelin, Sermorelin",
+    "administration": [
+      {
+        "source": "\u003ca href=\"TMCCatalog.pdf\" target=\"_blank\"\u003eTailorMade Compounding\u003c/a\u003e",
+        "fasting": "Yes",
+        "dosage": "12.5-25mg",
+        "timing": "PM",
+        "frequency": "QD",
+        "route": "Oral",
+        "protocol": "QD PO before bed on empty stomach for 4-6 weeks on, followed by 4-6 weeks off. Male 25mg / Female 12.5mg"
+      }
+    ],
+    "sideEffects": "Metabolic Changes, Hormonal Fluctuations, And Physical Discomfort"
+  },
+  {
+    "discordant": "",
+    "id": "1400",
+    "mechanism": "",
+    "peptidename": "Ipamorelin",
+    "tags": "Enhances Cell Repair, Muscle Growth, Sleep And Overall Wellness",
+    "halfLife": "2 Hours",
+    "synergistic": "CJC-1295, Ibutamoren (MK-677), Tesamorelin",
+    "administration": [
+      {
+        "source": "\u003ca href=\"TMCCatalog.pdf\" target=\"_blank\"\u003eTailorMade Compounding\u003c/a\u003e",
+        "fasting": "No",
+        "dosage": "200mcg",
+        "timing": "PM",
+        "route": "Subcutaneous Injection",
+        "protocol": "SQ 5 nights on, 2 off, for 8 weeks, followed by 8 weeks off"
+      },
+      {
+        "source": "Jay Campbell",
+        "fasting": "No",
+        "dosage": "200-300mcg",
+        "frequency": "TID",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD to TID SQ 5 nights on, 2 off, for 8 weeks, followed by 8 weeks off. Inject slowly, titrate up"
+      }
+    ],
+    "sideEffects": "Cardiovascular Changes, Warmth Sensations, And Physical Discomfort"
+  },
+  {
+    "discordant": "",
+    "id": "1500",
+    "mechanism": "",
+    "peptidename": "KPV",
+    "tags": "Promotes Healing, Anti-Inflammation, And Immune System Support",
+    "halfLife": "Unknown",
+    "synergistic": "",
+    "administration": [
+      {
+        "source": "Metabolic Optimization Guide",
+        "fasting": "No",
+        "dosage": "500mcg",
+        "frequency": "BID",
+        "route": "Oral",
+        "protocol": "BID PO"
+      },
+      {
+        "source": "\u003ca href=\"https://muscleandbrawn.com/peptides/kpv-guide\" target=\"_blank\"\u003eMuscle and Brawn\u003ca/\u003e",
+        "fasting": "No",
+        "dosage": "200-400mcg",
+        "frequency": "QD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD SQ"
+      },
+      {
+        "frequency": "BID",
+        "dosage": "0.5ml of 2mg/g + D3 1000 iu/g",
+        "fasting": "No",
+        "protocol": "BID TOP applied to affected area",
+        "route": "Topical Application"
+      }
+    ],
+    "sideEffects": "Diarrhea, Headache, Nausea, Vomiting"
+  },
+  {
+    "discordant": "",
+    "id": "1600",
+    "mechanism": "",
+    "peptidename": "LL-37",
+    "tags": "Boosts Immunity, Fights Inflammation, And Promotes Tissue Healing",
+    "halfLife": "Unknown",
+    "synergistic": "",
+    "administration": [
+      {
+        "source": "\u003ca href=\"https://muscleandbrawn.com/peptides/ll-37-peptide-guide/\" target=\"_blank\"\u003eMuscle and Brawn\u003c/a\u003e",
+        "fasting": "No",
+        "dosage": "100mcg",
+        "frequency": "QD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD SQ for up to 3 months, then 1 month off"
+      }
+    ],
+    "sideEffects": "Inflammatory And Autoimmune Issues, Skin Problems, And Reproductive Effects"
+  },
+  {
+    "discordant": "",
+    "id": "1700",
+    "mechanism": "",
+    "peptidename": "Matrixyl",
+    "tags": "Enhances Skin Texture, Firmness, And Reduces Wrinkles",
+    "halfLife": "Unknown",
+    "synergistic": "Palmitoyl Tetrapeptide 7, Snap-8",
+    "administration": [
+      {
+        "source": "\u003ca href=\"https://muscleandbrawn.com/peptides/best-peptides-for-skin/\" target=\"_blank\"\u003eMuscle and Brawn\u003c/a\u003e",
+        "fasting": "No",
+        "dosage": "2%-9%",
+        "frequency": "BID",
+        "route": "Topical Application",
+        "protocol": "BID TOP "
+      }
+    ],
+    "sideEffects": ""
+  },
+  {
+    "discordant": "",
+    "id": "1800",
+    "mechanism": "",
+    "peptidename": "Melanotan 1",
+    "tags": "Promotes Skin Health, Heart Protection, And Cognitive Function",
+    "halfLife": "Unknown",
+    "synergistic": "",
+    "administration": [
+      {
+        "source": "Dr. Seeds",
+        "fasting": "No",
+        "dosage": "200mcg",
+        "frequency": "QD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD SQ for 6-8 weeks for immunity"
+      },
+      {
+        "source": "Dr. Seeds",
+        "fasting": "No",
+        "dosage": "200mcg",
+        "frequency": "QWK",
+        "route": "Subcutaneous Injection",
+        "protocol": "QWK SQ, followed by 100mcg twice a week for tanning"
+      }
+    ],
+    "sideEffects": "Skin Changes, Digestive Issues, And Energy Changes"
+  },
+  {
+    "discordant": "",
+    "id": "1900",
+    "mechanism": "",
+    "peptidename": "MOTS-C",
+    "tags": "Supports Liver, Heart, Brain Health And Metabolic Function",
+    "halfLife": "Unknown",
+    "synergistic": "Frag 176-292, Humanin, SS-31, Tesofensine",
+    "administration": [
+      {
+        "source": "Dr. Seeds",
+        "fasting": "No",
+        "dosage": "5mg",
+        "frequency": "TIW",
+        "route": "Subcutaneous Injection",
+        "protocol": "TIW SQ for 4-6 weeks, follow by 5mg QWK for 4 weeks, repeat cycle 3-4 times a year"
+      },
+      {
+        "source": "Metabolic Optimization Guide",
+        "fasting": "No",
+        "dosage": "5mg",
+        "frequency": "TIW",
+        "route": "Subcutaneous Injection",
+        "protocol": "TIW SQ for 4-6 weeks"
+      },
+      {
+        "source": "\u003ca href=\"TMCCatalog.pdf\" target=\"_blank\"\u003eTailorMade Compounding\u003c/a\u003e",
+        "fasting": "No",
+        "dosage": "10mg",
+        "frequency": "QWK",
+        "route": "Subcutaneous Injection",
+        "protocol": "QWK SQ up to 10 weeks in a row, yearly"
+      },
+      {
+        "source": "Dr. Rob Kominisrek",
+        "fasting": "No",
+        "dosage": "10mg",
+        "frequency": "QWK",
+        "route": "Subcutaneous Injection",
+        "protocol": "QWK SQ for 4 weeks, followed by another cycle within a year"
+      }
+    ],
+    "sideEffects": "Fluid Retention, Increased Blood Sugar, Nausea"
+  },
+  {
+    "discordant": "",
+    "id": "2000",
+    "mechanism": "",
+    "peptidename": "NAD+",
+    "tags": "Promotes Energy, Strength, And Total-Body Health Benefits",
+    "halfLife": "Unknown",
+    "synergistic": "5-amino-1MQ",
+    "administration": [
+      {
+        "frequency": "BIW",
+        "dosage": "25-50mg",
+        "fasting": "No",
+        "protocol": "BIW SQ",
+        "route": "Subcutaneous Injection"
+      }
+    ],
+    "sideEffects": "Metabolic Changes, Cardiovascular Effects, And Multiple System Disturbances"
+  },
+  {
+    "discordant": "",
+    "id": "2100",
+    "mechanism": "",
+    "peptidename": "PE 22-28",
+    "tags": "Antidepressant",
+    "halfLife": "Unknown",
+    "synergistic": "",
+    "administration": [
+      {
+        "source": "Jay Campbell",
+        "fasting": "No",
+        "dosage": "400mcg",
+        "timing": "AM",
+        "frequency": "QD",
+        "route": "Intranasal Spray",
+        "protocol": "QD IN"
+      }
+    ],
+    "sideEffects": ""
+  },
+  {
+    "discordant": "",
+    "id": "2200",
+    "mechanism": "",
+    "peptidename": "Selank",
+    "tags": "Reduces Anxiety And Enhances Brain, Immune, And Liver Function",
+    "halfLife": "Unknown",
+    "synergistic": "Dihexa, Semax",
+    "administration": [
+      {
+        "source": "Dr. Seeds",
+        "fasting": "No",
+        "dosage": "750-1000mcg",
+        "timing": "AM",
+        "frequency": "QD",
+        "route": "Intranasal Spray",
+        "protocol": "QD IN"
+      },
+      {
+        "source": "Dr. Seeds",
+        "fasting": "No",
+        "dosage": "100-300mcg",
+        "timing": "AM",
+        "frequency": "QD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD SQ"
+      }
+    ],
+    "sideEffects": "Physical Discomfort, Respiratory Issues, And Hair Changes"
+  },
+  {
+    "discordant": "",
+    "id": "2300",
+    "mechanism": "",
+    "peptidename": "Semax",
+    "tags": "Enhances Heart, Brain, Immunity And Emotional Wellbeing",
+    "halfLife": "Unknown",
+    "synergistic": "Dihexa, Selank",
+    "administration": [
+      {
+        "source": "Dr. Seeds",
+        "fasting": "No",
+        "dosage": "750-1000mcg",
+        "timing": "AM",
+        "frequency": "QD",
+        "route": "Intranasal Spray",
+        "protocol": "QD IN"
+      },
+      {
+        "source": "Dr. Seeds",
+        "fasting": "No",
+        "dosage": "100-300mcg",
+        "timing": "AM",
+        "frequency": "QD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD SQ"
+      }
+    ],
+    "sideEffects": "Metabolic Changes, Hair Loss, And Nasal Effects"
+  },
+  {
+    "discordant": "CJC-1295",
+    "id": "2400",
+    "mechanism": "",
+    "peptidename": "Sermorelin",
+    "tags": "Enhances Body Composition, Energy, And Mental Performance",
+    "halfLife": "Short (Unknown)",
+    "synergistic": "Ibutamoren (MK-677)",
+    "administration": [
+      {
+        "source": "World of Peptides",
+        "fasting": "No",
+        "dosage": "300-500mcg",
+        "timing": "PM",
+        "frequency": "QD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD SQ for up to 6 months"
+      }
+    ],
+    "sideEffects": ""
+  },
+  {
+    "discordant": "High PH, AHA, Vitamin A",
+    "id": "2500",
+    "mechanism": "",
+    "peptidename": "Snap-8",
+    "tags": "Reduces Wrinkles And Improves Skin Elasticity",
+    "halfLife": "Unknown",
+    "synergistic": "HA, Matrixyl, GHK-CU, Ceramides, Vitamin E, Vitamin B, Argireline",
+    "administration": [
+      {
+        "frequency": "QD-BID",
+        "dosage": "Varies",
+        "fasting": "No",
+        "protocol": "Reconstitute 10mg with 1ml BAC water, add to 30 ml tallow, apply to affected areas",
+        "route": "Topical Application"
+      }
+    ],
+    "sideEffects": ""
+  },
+  {
+    "discordant": "",
+    "id": "2600",
+    "mechanism": "",
+    "peptidename": "SS-31",
+    "tags": "Supports Cellular Health And Multi-Organ Function",
+    "halfLife": "Unknown",
+    "synergistic": "Humanin, MOTS-C, Tesofensine",
+    "administration": [
+      {
+        "frequency": "QD",
+        "dosage": "4mg",
+        "fasting": "No",
+        "protocol": "QD SQ for 10-20 days",
+        "route": "Subcutaneous Injection"
+      }
+    ],
+    "sideEffects": ""
+  },
+  {
+    "discordant": "",
+    "id": "2700",
+    "mechanism": "",
+    "peptidename": "TB-500",
+    "tags": "Promotes Healing, Pain Relief, And Anti-Aging Benefits",
+    "halfLife": "Unknown",
+    "synergistic": "BPC-157, Thymosin Alpha-1",
+    "administration": [
+      {
+        "source": "\u003ca href=\"TMCCatalog.pdf\" target=\"_blank\"\u003eTailorMade Compounding\u003c/a\u003e",
+        "fasting": "No",
+        "dosage": "750mcg",
+        "frequency": "QD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD SQ for 20 days"
+      },
+      {
+        "source": "World of Peptides",
+        "fasting": "No",
+        "dosage": "1mg",
+        "frequency": "BIW",
+        "route": "Subcutaneous Injection",
+        "protocol": "BIW SQ"
+      },
+      {
+        "source": "Dr. Seeds",
+        "fasting": "No",
+        "dosage": "300-1000mcg",
+        "frequency": "QD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD SQ for no longer than 3 months on, 1 month off"
+      },
+      {
+        "source": "Peptide Dosing guide",
+        "fasting": "No",
+        "dosage": "450mcg",
+        "frequency": "QD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD SQ for 30 days"
+      },
+      {
+        "source": "Jay Campbell",
+        "fasting": "No",
+        "dosage": "2-2.5mg",
+        "frequency": "QAD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QAD SQ"
+      }
+    ],
+    "sideEffects": ""
+  },
+  {
+    "discordant": "CJC-1295",
+    "id": "2800",
+    "mechanism": "",
+    "peptidename": "Tesamorelin",
+    "tags": "Supports Metabolic, Bone, And Cognitive Health",
+    "halfLife": "26 Minutes",
+    "synergistic": "Ipamorelin",
+    "administration": [
+      {
+        "source": "\u003ca href=\"TMCCatalog.pdf\" target=\"_blank\"\u003eTailorMade Compounding\u003c/a\u003e",
+        "fasting": "Yes",
+        "dosage": "1mg",
+        "timing": "PM",
+        "frequency": "Varies",
+        "route": "Subcutaneous Injection",
+        "protocol": "SQ before bed, 5-6 days a week, 60 days on, 60 days off"
+      },
+      {
+        "source": "Dr. Seeds",
+        "fasting": "Yes",
+        "dosage": "1mg",
+        "frequency": "QD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD SQ, 60 days on, 60 days off"
+      },
+      {
+        "source": "Jay Campbell",
+        "fasting": "Yes",
+        "dosage": "2mg",
+        "frequency": "BID",
+        "route": "Subcutaneous Injection",
+        "protocol": "BID SQ, 1mg fasted in AM, 1mg before bed, fasted, 60 days on, 60 days off"
+      },
+      {
+        "frequency": "QD",
+        "dosage": "2mg",
+        "fasting": "Yes",
+        "protocol": "QD SQ, 60 days on, 60 days off",
+        "route": "Subcutaneous Injection"
+      },
+      {
+        "fasting": "Yes",
+        "dosage": "200mcg",
+        "timing": "PM",
+        "frequency": "Varies",
+        "route": "Subcutaneous Injection",
+        "protocol": "SQ at bedtime, 5 days on, 2 days off, for cognition"
+      }
+    ],
+    "sideEffects": "Cardiovascular Changes, Blood Sugar Changes, And Multiple Physical Symptoms"
+  },
+  {
+    "discordant": "",
+    "id": "2900",
+    "mechanism": "",
+    "peptidename": "Tesofensine",
+    "tags": "Promotes Weight Management And Mental Wellbeing",
+    "halfLife": "9 Days",
+    "synergistic": "MOTS-C, SS-34",
+    "administration": [
+      {
+        "source": "Jay Campbell",
+        "fasting": "No",
+        "dosage": "500mcg",
+        "timing": "AM",
+        "frequency": "QD",
+        "route": "Oral",
+        "protocol": "QD PO in AM. Cut dose in half if insomnia"
+      }
+    ],
+    "sideEffects": "Cardiovascular Changes, Digestive Issues, And Sleep Disturbances"
+  },
+  {
+    "discordant": "",
+    "id": "3000",
+    "mechanism": "",
+    "peptidename": "Thymalin/Thimogen",
+    "tags": "Supports Immune Function And Healthy Aging Response",
+    "halfLife": "Unknown",
+    "synergistic": "Epitalon ",
+    "administration": [
+      {
+        "frequency": "QD",
+        "dosage": "2-10mg",
+        "fasting": "No",
+        "protocol": "QD SQ, no longer than 10 days, 2 cycles a year",
+        "route": "Intramuscular Injection"
+      },
+      {
+        "frequency": "QD",
+        "dosage": "2-10mg",
+        "fasting": "No",
+        "protocol": "QD SQ, no longer than 10 days, 2 cycles a year",
+        "route": "Subcutaneous Injection"
+      }
+    ],
+    "sideEffects": ""
+  },
+  {
+    "discordant": "",
+    "id": "3100",
+    "mechanism": "",
+    "peptidename": "Thymosin Alpha-1",
+    "tags": "Enhances Immune Defense And Anti-Pathogen Response",
+    "halfLife": "Unknown",
+    "synergistic": "Thymosin Beta-4 (TB500)",
+    "administration": [
+      {
+        "source": "Peptide Dosing guide",
+        "fasting": "No",
+        "dosage": "450mcg",
+        "frequency": "QD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD SQ for 30 days"
+      },
+      {
+        "source": "\u003ca href=\"TMCCatalog.pdf\" target=\"_blank\"\u003eTailorMade Compounding\u003c/a\u003e",
+        "fasting": "No",
+        "dosage": "90mcg",
+        "frequency": "QD",
+        "route": "Subcutaneous Injection",
+        "protocol": "QD SQ for 30 days (total of 5mg)"
+      },
+      {
+        "source": "Dr. Seeds",
+        "fasting": "No",
+        "dosage": "1.5mg",
+        "frequency": "Varies",
+        "route": "Subcutaneous Injection",
+        "protocol": "Every third day for two weeks for viral infection or up to 3 months for HIV, cancer, Hepatitis B/C, or immune suppression"
+      }
+    ],
+    "sideEffects": "Reduced White Blood Cells, Physical Discomfort, And Digestive Issues"
+  }
+]
+
+
+//]
+
+        // Initialize Tabulator
+        var table = new Tabulator("#example-table", {
+    height: "100%",
+    //minheight:"311px",
+    //rowHeight:"50",
+    layout:"fitDataStretch",
+    columnDefaults:{
+      resizable:false,
+    },
+    data:nestedData,
+    dataTree:true,
+    columns:[
+        {title: "Peptide Name", field:"peptidename", frozen:true},
+        {title: "Mechanism", field:"mechanism"},
+        {title: "Tags", field:"tags", formatter:"textarea"},
+        {title: "Synergistic Compounds", field:"synergistic"},
+        {title: "Discordant Compounds", field:"discordant"},
+        {title: "Half Life", field:"halfLife"},
+        {title: "Side Effects", field:"sideEffects", formatter:"textarea"}
+    ],
+
+    rowFormatter:function(row){
+        //create and style holder elements
+       var holderEl = document.createElement("div");
+       var tableEl = document.createElement("div");
+
+       holderEl.style.boxSizing = "border-box";
+       holderEl.style.padding = "10px 30px 10px 10px";
+       holderEl.style.borderTop = "1px solid #333";
+       holderEl.style.borderBotom = "1px solid #333";
+       
+
+       tableEl.style.border = "1px solid #333";
+
+       holderEl.appendChild(tableEl);
+
+       row.getElement().appendChild(holderEl);
+
+       var subTable = new Tabulator(tableEl, {
+           layout:"fitDataStretch",
+           data:row.getData().administration,
+           columns:[
+           {title: "Route", field:"route"},
+           {title: "Dosage", field:"dosage"},
+           {title: "Timing", field:"timing"},
+           {title: "Fasting", field:"fasting"},
+           {title: "Frequency", field:"frequency"},
+           {title: "Protocol", field:"protocol", formatter:"textarea"},
+           {title: "Source", field:"source", formatter:"html"}
+        
+           ]
+       })
+    },
+});    </script>
+
+qd - daily <br>
+q3d - every 3 days <br>
+bd - twice a day <br>
+BW - twice a week <br>
+
+TIW - three times a week <br>
+cc - with food <br>
+am - morning <br>
+pm - afternoon or evening <br>
+sq - subcutaneous injection <br>
+sl - sublingual <br>
+po - oral <br>
+
+<a href="https://mn.gov/boards/assets/prescription%20abbreviations_tcm21-26882.pdf">https://mn.gov/boards/assets/prescription%20abbreviations_tcm21-26882.pdf</a>
+</body>
+</html>
